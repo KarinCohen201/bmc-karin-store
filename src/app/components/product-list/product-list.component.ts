@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../../services/cart.service';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router'; 
 import { HeaderComponent } from '../header/header.component';
 
 @Component({
@@ -15,7 +14,7 @@ import { HeaderComponent } from '../header/header.component';
 export class ProductListComponent implements OnInit {
 
   public productList : any;
-  constructor(private api: ApiService, private cartService: CartService, private router: Router){ }
+  constructor(private api: ApiService, private cartService: CartService){ }
 
   ngOnInit(): void {
     this.api.getProducts()
