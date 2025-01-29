@@ -8,9 +8,14 @@ import { UserService } from '../../services/user.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   public userName: string = '';
   constructor(private router: Router, private userService: UserService) { }
+
+  ngOnInit(): void {
+    const loggedInUser = this.userService.getLoggedInUser();
+    this.userName = loggedInUser?.email ? loggedInUser.email.split('@')[0] : 'Guest';
+  }
 
   goToCart() {
     this.router.navigate(['cart']);
@@ -18,8 +23,8 @@ export class HeaderComponent implements OnInit{
 
 
   logoutUser(): void {
-    this.userService.logoutUser(); // Call the logout function in UserService
-    this.router.navigate(['/login']); // Navigate to the login page after logout
+    this.userService.logoutUser();
+    this.router.navigate(['/login']);
   }
 
   goToProducts() {
@@ -28,17 +33,6 @@ export class HeaderComponent implements OnInit{
 
   isActive(route: string): boolean {
     return this.router.url.includes(route);
-  }
-
-  ngOnInit(): void {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
-    const email = loggedInUser?.email;
-
-    if (email) {
-      this.userName = email.split('@')[0]; 
-    } else {
-      this.userName = 'Guest'; 
-    }
   }
 
 }

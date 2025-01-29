@@ -1,7 +1,7 @@
 <div class="login-container">
     <h1>Login</h1>
     <form (ngSubmit)="login()">
-      <!-- Email Field -->
+ 
       <div class="form-group">
         <label for="email"></label>
         <input
@@ -12,8 +12,7 @@
           placeholder="Your Email"
         />
       </div>
-  
-      <!-- Password Field -->
+
       <div class="form-group">
         <label for="password"></label>
         <input
@@ -24,17 +23,15 @@
           placeholder="Your Password"
         />
       </div>
-  
-      <!-- Error Message -->
+
       <div *ngIf="errorMessage" class="error-container">
         <small class="error-message">{{ errorMessage }}</small>
       </div>
   
-      <!-- Submit Button -->
+
       <button class="btn btn-primary" id="login-submit" type="submit">Login</button>
     </form>
-  
-    <!-- Register Link -->
+
     <p>
       Don't have an account? 
       <a class="forRegister" (click)="goToRegister()">Register here </a>

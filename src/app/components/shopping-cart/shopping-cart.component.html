@@ -3,13 +3,11 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Shopping Cart</h2>
 
-    <!-- Total Price -->
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5>Total: {{ getTotalPrice() | currency }}</h5>
         <button class="btn btn-danger" (click)="clearCart()">Clear All</button>
     </div>
 
-    <!-- Cart Items -->
     <div class="card-table" *ngIf="cartItems.length > 0; else emptyCart">
         <table class="table table-striped table-hover table-bordered">
             <thead class="table-dark">
@@ -39,7 +37,6 @@
         </table>
     </div>
 
-    <!-- Empty Cart -->
     <ng-template #emptyCart>
         <div class="text-center mt-5">
             <h4 class="mt-3">Your cart is empty!</h4>

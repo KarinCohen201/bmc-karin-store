@@ -1,57 +1,58 @@
 import { Injectable, EventEmitter } from '@angular/core';
+import { UserService } from './user.service'; // ✅ נוסיף את UserService
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
-  public cartUpdated = new EventEmitter<any[]>(); // EventEmitter for cart updates
-  private cartItemList: any[] = []; // Store items in memory
+  public cartUpdated = new EventEmitter<any[]>(); 
+  private cartItemList: any[] = []; 
 
-  constructor() {
-    this.loadCartFromLocalStorage(); // Load cart from localStorage on initialization
+  constructor(private userService: UserService) { 
+    this.loadCartFromLocalStorage(); 
   }
 
   private saveCartToLocalStorage() {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    const loggedInUser = this.userService.getLoggedInUser(); 
     const email = loggedInUser?.email;
 
     if (email) {
       const carts = JSON.parse(localStorage.getItem('carts') || '{}');
-      carts[email] = this.cartItemList; // Save the current cart for the logged-in user
+      carts[email] = this.cartItemList; 
       localStorage.setItem('carts', JSON.stringify(carts));
     }
   }
 
   private loadCartFromLocalStorage() {
-    const loggedInUser = JSON.parse(localStorage.getItem('loggedInUser') || '{}');
+    const loggedInUser = this.userService.getLoggedInUser(); 
     const email = loggedInUser?.email;
 
     if (email) {
       const carts = JSON.parse(localStorage.getItem('carts') || '{}');
-      this.cartItemList = carts[email] || []; // Load the user's cart or initialize an empty array
-      this.cartUpdated.emit(this.cartItemList); // Emit the loaded cart
+      this.cartItemList = carts[email] || []; 
+      this.cartUpdated.emit(this.cartItemList); 
     }
   }
 
   addToCart(product: any) {
-    this.cartItemList.push(product); // Add product to in-memory cart
-    this.saveCartToLocalStorage(); // Save to localStorage
-    this.cartUpdated.emit(this.cartItemList); // Emit updated cart
+    this.cartItemList.push(product); 
+    this.saveCartToLocalStorage(); 
+    this.cartUpdated.emit(this.cartItemList); 
   }
 
   removeCartItem(product: any) {
-    this.cartItemList = this.cartItemList.filter(item => item.id !== product.id); // Remove item
-    this.saveCartToLocalStorage(); // Save to localStorage
-    this.cartUpdated.emit(this.cartItemList); // Emit updated cart
+    this.cartItemList = this.cartItemList.filter(item => item.id !== product.id); 
+    this.saveCartToLocalStorage(); 
+    this.cartUpdated.emit(this.cartItemList); 
   }
 
   removeAllCart() {
-    this.cartItemList = []; // Clear all items
-    this.saveCartToLocalStorage(); // Save to localStorage
-    this.cartUpdated.emit(this.cartItemList); // Emit empty cart
+    this.cartItemList = []; 
+    this.saveCartToLocalStorage(); 
+    this.cartUpdated.emit(this.cartItemList); 
   }
 
   getCartItems() {
-    return this.cartItemList; // Return all items
+    return this.cartItemList; 
   }
 }

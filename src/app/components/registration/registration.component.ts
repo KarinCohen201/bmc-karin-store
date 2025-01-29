@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { UserService } from '../../services/user.service'; // Import UserService
+import { UserService } from '../../services/user.service'; 
 
 @Component({
   selector: 'app-registration',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], // Import ReactiveFormsModule and CommonModule
+  imports: [ReactiveFormsModule, CommonModule], 
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
@@ -25,36 +25,36 @@ export class RegistrationComponent {
       {
         email: [
           '', 
-          [Validators.required, this.strictEmailValidator()] // Use a custom email validator
+          [Validators.required, this.strictEmailValidator()] 
         ],
         password: [
           '',
           [
             Validators.required,
             Validators.minLength(6),
-            Validators.pattern(/^(?=.*[A-Z]).+$/) // At least one uppercase letter
+            Validators.pattern(/^(?=.*[A-Z]).+$/) 
           ]
         ],
-        confirmPassword: ['', [Validators.required]] // Confirm password field with required validation
+        confirmPassword: ['', [Validators.required]] 
       },
       {
-        validators: this.passwordMatchValidator() // Attach passwordMatchValidator to the form group
+        validators: this.passwordMatchValidator() 
       }
     );
   }
 
-  // Custom email validator for stricter validation
+
   strictEmailValidator() {
     return (control: AbstractControl) => {
       const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
       if (!control.value || emailRegex.test(control.value)) {
-        return null; // Valid email
+        return null;
       }
-      return { invalidEmail: true }; // Invalid email
+      return { invalidEmail: true }; 
     };
   }
 
-  // Check if passwords match
+
   passwordMatchValidator() {
     return (group: AbstractControl): ValidationErrors | null => {
       const password = group.get('password')?.value;
@@ -63,16 +63,16 @@ export class RegistrationComponent {
     };
   }
 
-  // Handle form submission
+
   register() {
     if (this.registrationForm.valid) {
       const email = this.registrationForm.get('email')?.value;
       const password = this.registrationForm.get('password')?.value;
 
-      const success = this.userService.addUser({ email, password }); // Add the user
+      const success = this.userService.addUser({ email, password }); 
 
       if (success) {
-        this.router.navigate(['/login']); // Navigate to the login page
+        this.router.navigate(['/login']); 
       } else {
         this.userExistsError = 'User already exists!';
       }

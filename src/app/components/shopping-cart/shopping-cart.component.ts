@@ -17,12 +17,10 @@ export class ShoppingCartComponent implements OnInit {
   constructor(private cartService: CartService, private router: Router) {}
 
   ngOnInit() {
-    // Get cart items from CartService
     this.cartItems = this.cartService.getCartItems();
 
-    // Subscribe to cart updates
     this.cartService.cartUpdated.subscribe((updatedCart) => {
-      this.cartItems = updatedCart; // Update cart items when they change
+      this.cartItems = updatedCart; 
     });
   }
 
@@ -31,15 +29,15 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   removeFromCart(item: any) {
-    this.cartService.removeCartItem(item); // Remove item via CartService
+    this.cartService.removeCartItem(item); 
   }
 
   getTotalPrice(): number {
-    return this.cartItems.reduce((total, item) => total + item.price, 0); // Calculate total price
+    return this.cartItems.reduce((total, item) => total + item.price, 0); 
   }
 
   clearCart() {
-    this.cartService.removeAllCart(); // Clear cart via CartService
+    this.cartService.removeAllCart(); 
     console.log('Cart has been cleared!');
   }
 }

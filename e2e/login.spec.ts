@@ -2,7 +2,6 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Login Page', () => {
     test('should not allow login with missing credentials', async ({ page }) => {
-        // Navigate to the login page
         await page.goto('http://localhost:4200');
         await page.click('#login-submit');
         const errorMessage = page.locator('small', { hasText: 'Please fill in both email and password.' });
@@ -18,7 +17,6 @@ test.describe('Login Page', () => {
         await expect(errorMessage).toBeVisible();  
     });
 
-       // Fill in valid credentials
     test('should navigate to /products on successful login', async ({ page }) => {
         await page.goto('http://localhost:4200');
         await page.evaluate(() =>{

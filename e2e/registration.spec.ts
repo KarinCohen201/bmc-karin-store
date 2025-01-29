@@ -32,7 +32,7 @@ test.describe('Registration Page', () => {
         await expect(page).toHaveURL('http://localhost:4200/');
     });
 
-     // Fill the form with an existing user's details
+
     test('should display alert when user already exists', async ({ page }) => {
         await page.goto('http://localhost:4200/register');
         await page.evaluate(() =>{
@@ -47,11 +47,11 @@ test.describe('Registration Page', () => {
         await expect(errorMessage).toBeVisible({ timeout: 5000 });
 
     });
- // Navigate to the registration page
+
     test('should validate email format and show error for invalid email', async ({ page }) => {
         await page.goto('http://localhost:4200/register');
         await page.fill('#register-email', 'invalid-email');
-        await page.click('#register-password'); // Move focus out of email field
+        await page.click('#register-password'); 
         const emailError = page.locator('text=Invalid email format.');
         await expect(emailError).toBeVisible();
     });

@@ -1,56 +1,52 @@
 <div class="registration-container">
     <h1>Sign up</h1>
     <form [formGroup]="registrationForm" (ngSubmit)="register()">
-      <!-- Email Field -->
+    
       <div class="form-group">
         <label for="email">Email</label>
         <input type="email" id="register-email" formControlName="email" placeholder="Your Email" />
         <div *ngIf="registrationForm.get('email')?.touched">
-          <small *ngIf="registrationForm.get('email')?.errors?.['required']" style="color: red;">
-            Email is required.
-          </small>
-          <small *ngIf="registrationForm.get('email')?.errors?.['invalidEmail']" style="color: red;">
+            <small *ngIf="registrationForm.get('email')?.errors?.['required']" class="error-message">
+                Email is required.
+              </small>
+          <small *ngIf="registrationForm.get('email')?.errors?.['invalidEmail']" class="error-text">
             Invalid email format.
           </small>
         </div>
       </div>
   
-      <!-- Password Field -->
       <div class="form-group">
         <label for="password">Password</label>
         <input type="password" id="register-password" formControlName="password" placeholder="Password" />
         <div *ngIf="registrationForm.get('password')?.touched">
-          <small *ngIf="registrationForm.get('password')?.errors?.['required']" style="color: red;">
+          <small *ngIf="registrationForm.get('password')?.errors?.['required']" class="error-text">
             Password is required.
           </small>
-          <small *ngIf="registrationForm.get('password')?.errors?.['minlength']" style="color: red;">
+          <small *ngIf="registrationForm.get('password')?.errors?.['minlength']" class="error-text">
             Password must be at least 6 characters long.
           </small>
-          <small *ngIf="registrationForm.get('password')?.errors?.['pattern']" style="color: red;">
+          
+          <small *ngIf="registrationForm.get('password')?.errors?.['pattern']" class="error-text">
             Password must include at least one uppercase letter.
           </small>
         </div>
       </div>
   
-      <!-- Confirm Password Field -->
       <div class="form-group">
         <label for="confirmPassword">Confirm Password</label>
         <input type="password" id="register-confirmPassword" formControlName="confirmPassword"
           placeholder="Repeat your password" />
         <div *ngIf="registrationForm.get('confirmPassword')?.touched || registrationForm.hasError('passwordsMismatch')">
-          <small *ngIf="registrationForm.hasError('passwordsMismatch')" style="color: red;">
-            Passwords do not match.
-          </small>
+            <small *ngIf="registrationForm.hasError('passwordsMismatch')" class="error-text">
+                Passwords do not match.
+              </small>
         </div>
       </div>
-  
-      <!-- Submit Button -->
+
       <button class="btn btn-primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
   
-      <!-- Error Message for Existing User -->
-      <div id="user-exists-error" *ngIf="userExistsError" style="color: red; margin-top: 10px;">
+      <div id="user-exists-error" *ngIf="userExistsError" class="error-message user-exists-error">
         {{ userExistsError }}
-      </div>
-  
+    </div>
     </form>
   </div>
