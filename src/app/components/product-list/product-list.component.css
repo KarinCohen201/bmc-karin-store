@@ -1,0 +1,93 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f5f5; 
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+
+.container {
+    margin: 20px auto;
+    max-width: 1200px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+
+.card {
+    background-color: #fff; /* צבע לבן */
+    border: 1px solid #ddd; /* מסגרת אפורה */
+    border-radius: 10px; /* קצוות מעוגלים */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* צל */
+    margin: 15px;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 250px;
+}
+
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+
+.card img {
+    max-width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+
+.card h5 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 5px 0;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card .btn {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.card .btn:hover {
+    background-color: #0056b3; 
+}
+
+

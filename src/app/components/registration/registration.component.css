@@ -1,0 +1,70 @@
+/* Container for the registration form */
+.registration-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Title style */
+  .registration-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  
+  /* Form group style */
+  .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+  }
+  
+  /* Input field style */
+  .form-group input {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    outline: none;
+  }
+  
+  /* Error message style */
+  .form-group small {
+    color: rgb(125, 1, 1);
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  /* Button style */
+  #login-submit {
+    background-color: #3b82f6;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  #login-submit {
+    background-color: #2563eb;
+  }
+  
+  /* Add spacing between sections */
+  .form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+    color: #555;
+  }
+  
