@@ -20,7 +20,7 @@ export class LoginComponent {
 
   login() {
     this.errorMessage = null;
-
+  
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in both email and password.';
       return;

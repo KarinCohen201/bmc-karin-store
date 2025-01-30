@@ -13,7 +13,7 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class ProductListComponent implements OnInit {
 
-  public productList : any;
+  public productList : any[] = [];
   constructor(private api: ApiService, private cartService: CartService){ }
 
   ngOnInit(): void {

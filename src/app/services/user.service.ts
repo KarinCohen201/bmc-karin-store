@@ -9,7 +9,7 @@ export class UserService {
 
   getUsers(): any[] {
     const storedUsers = localStorage.getItem('users');
-    console.log('Stored users:', storedUsers); // Debugging
+    console.log('Stored users:', storedUsers); 
     return storedUsers ? JSON.parse(storedUsers) : [];
   }
 
@@ -47,19 +47,6 @@ export class UserService {
 
   logoutUser(): void {
     localStorage.removeItem('loggedInUser');
-  }
-
-  getUserCart(): any[] {
-    const loggedInUser = this.getLoggedInUser();
-    const email = loggedInUser?.email;
-
-    if (!email) {
-      console.error('No logged-in user found.');
-      return [];
-    }
-
-    const carts = JSON.parse(localStorage.getItem('carts') || '{}');
-    return carts[email] || [];
   }
 
 }
