@@ -68,16 +68,24 @@ export class RegistrationComponent {
     if (this.registrationForm.valid) {
       const email = this.registrationForm.get('email')?.value;
       const password = this.registrationForm.get('password')?.value;
-
-      const success = this.userService.addUser({ email, password });
-
-      if (success) {
-        this.router.navigate(['/login']);
-      } else {
-        this.userExistsError = 'User already exists!';
-      }
+  
+      this.userService.addUser({ email, password }).subscribe({
+        next: (res) => {
+          console.log('User registered successfully!', res);
+          this.router.navigate(['/login']);
+        },
+        error: (err) => {
+          console.error('Registration failed:', err);
+          if (err.status === 400) {
+            this.userExistsError = 'User already exists!';
+          } else {
+            this.userExistsError = 'Something went wrong. Please try again.';
+          }
+        }
+      });
     } else {
       console.error('Form is invalid');
     }
   }
+  
 }

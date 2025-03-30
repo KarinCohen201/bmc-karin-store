@@ -20,18 +20,23 @@ export class LoginComponent {
 
   login() {
     this.errorMessage = null;
-  
+
     if (!this.email || !this.password) {
       this.errorMessage = 'Please fill in both email and password.';
       return;
     }
 
-    const user = this.userService.loginUser(this.email, this.password);
-    if (user) {
-      this.router.navigate(['/products']); 
-    } else {
-      this.errorMessage = 'Invalid email or password!';
-    }
+    this.userService.loginUser(this.email, this.password).subscribe({
+      next: (res) => {
+        console.log('Login successful:', res);
+        localStorage.setItem('loggedInUser', JSON.stringify(res.user));
+        this.router.navigate(['/products']);
+      },
+      error: (err) => {
+        console.error('Login error:', err);
+        this.errorMessage = 'Invalid email or password!';
+      }
+    });
   }
 
   goToRegister() {
