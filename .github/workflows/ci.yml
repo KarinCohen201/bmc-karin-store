@@ -23,11 +23,11 @@ jobs:
       # Step 3: Build the images using Docker Compose
       # This verifies that your Dockerfiles and Compose file are valid
       - name: Build Docker images
-        run: docker-compose build
+        run: docker compose build
 
       # Step 4: Verify the containers can start
       - name: Test Docker Up
-        run: docker-compose up -d
+        run: docker compose up -d
 
       # Step 5: Check status of containers
       - name: Check container status
