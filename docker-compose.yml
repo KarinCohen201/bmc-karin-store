@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  # Backend Service
+  backend:
+    build: ./server
+    container_name: bmc-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    # Add your MongoDB connection string here if needed
+    # environment:
+    #   - MONGO_URI=mongodb://mongodb:27017/karin-store
+
+  # Frontend Service
+  frontend:
+    build: .
+    container_name: bmc-frontend
+    ports:
+      - "8080:80"
+    # Ensures the backend starts before the frontend
+    depends_on:
+      - backend
+
+# Optional: Add a database service if you use MongoDB locally
+#  mongodb:
+#    image: mongo:latest
+#    ports:
+#      - "27017:27017"
