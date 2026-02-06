@@ -18,7 +18,7 @@ services:
     build: .
     container_name: bmc-frontend
     ports:
-      - "8080:80"
+      - "8090:80"
     # Ensures the backend starts before the frontend
     depends_on:
       - backend
