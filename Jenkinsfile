@@ -20,12 +20,14 @@ pipeline {
         stage('Build & Run Store') {
             steps {
                 echo 'Cleaning up old containers...'
-                // Stop and remove existing containers to ensure a clean state.
-                // '|| true' prevents the pipeline from failing if no containers are currently running.
+                // Force remove specific container names explicitly
+                sh 'docker rm -f bmc-backend || true'
+                sh 'docker rm -f bmc-frontend || true'
+                
+                // Standard compose down
                 sh 'docker compose down || true'
                 
                 echo 'Building and starting the store using Docker Compose...'
-                // Build images and start containers in detached mode (-d)
                 sh 'docker compose up -d --build'
             }
         }
